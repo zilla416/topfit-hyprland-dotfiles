@@ -11,7 +11,7 @@
 
 
         "custom/updates": {
-            "format": "   ",
+            "format": "   ", // Arch Linux icon (Font Awesome)
             "interval": 7200,     
             "on-click": "nautilus", 
             "signal": 8
