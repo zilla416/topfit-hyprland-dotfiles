@@ -1,0 +1,17 @@
+{
+    "plugins": {},
+    "customCspRules": {
+        "images5.alphacoders.com": [
+            "connect-src",
+            "img-src",
+            "style-src",
+            "font-src"
+        ],
+        "w.wallhaven.cc": [
+            "connect-src",
+            "img-src",
+            "style-src",
+            "font-src"
+        ]
+    }
+}
