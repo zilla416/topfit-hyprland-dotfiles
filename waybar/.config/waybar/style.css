@@ -1,231 +1,177 @@
+/* --- ml4w inspired Waybar style --- */
+
 * {
-    border: none;
-    border-radius: 0;
-    font-family: JetBrainsMono Nerd Font, monospace;
-    font-size: 14px;
-    min-height: 0px;
+  border: none;
+  border-radius: 0;
+  font-family: JetBrainsMono Nerd Font, monospace;
+  font-size: 14px;
+  min-height: 0px;
 }
 
 window#waybar {
-    background: transparent;
+  background: rgba(24, 24, 24, 0.55);
+  border-radius: 12px;
+  border: 1.5px solid #aeaeae;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-#custom-updates {
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 5px 20px 5px 20px;
-    border: solid 3px;
-    border-color: #484a4a;
-    transition: background 0.3s ease,
-	border-radius 0.3s ease;
-    color: #ffffff;
-    background: #0f141c;
-}
-
-#custom-updates:hover {
-	border-radius: 20px 5px 20px 5px;
-	background: #484a4a;
-}
-
-#custom-spotify {
-	margin-left: 8px;
-	padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 5px 20px 5px 20px;
-    border: solid 3px;
-    border-color: #484a4a;
-    transition: background 0.3s ease-in-out,
-	border-radius 0.3s ease-in-out;
-    color: #ffffff;
-    background: #0f141c;
-}	
-
-#custom-spotify:hover {
-	border-radius: 20px 5px 20px 5px;
-	background: #484a4a;
-}
-
-
-#clock {
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 5px 5px 20px 20px;
-    border: solid 3px;
-    border-color: #484a4a;
-    transition: background 0.3s ease,
-	border-radius 0.3s ease;
-    color: #ffffff;
-    background: #0f141c;
-}
-
-#clock:hover {
-	border-radius: 20px 20px 5px 5px;
-	background: #484a4a;
-}
-
-#custom-cava {
-	margin-left: 8px;
-}	
-
-#network {
-	margin-right: 8px;
-	padding-right: 15px;
-	padding-left: 15px;
-	border-radius: 20px 5px 20px 5px;
-    border: solid 3px;
-    border-color: #484a4a;
-    transition: background 0.3s ease,
-	border-radius 0.3s ease;
-    color: #ffffff;
-    background: #0f141c;
+#workspaces button {
+  background: transparent;
+  color: #b4befe;
+  border-radius: 8px;
+  margin: 0 2px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  transition: background 0.2s, color 0.2s;
 }
 
 #workspaces button.active {
-    background: #eba0ac;      /* Example: pink background */
-    color: #ffffff;           /* Example: white text */
-    border-radius: 10px;      /* Rounded corners */
-    border-style: ridge;
-    border-width: 1px;
-    box-shadow: 0px 1px 1px 0px #b4befe;
+  color: white;
+  /* border: 1px solid #b4befe; */
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    text-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 0 8px #b4befe;
 }
 
-
-
-#network:hover {
-	border-radius: 5px 20px 5px 20px;
-	background: #484a4a;
+#tray,
+#custom-sysmon,
+#battery,
+#network,
+#pulseaudio,
+#backlight,
+#custom-updates,
+#custom-files,
+#custom-browser,
+#custom-launcher,
+#custom-spotify,
+#clock,
+#custom-recorder {
+  padding: 0 12px;
+  margin: 0 1.5px;
+  border-radius: 8px;
+  /* background: #232323; */
+  color: #e0e0e0;
+  /* border: 1px solid #2a2a2a; */
+  transition: background 0.2s, border-radius 0.2s;
 }
 
-#pulseaudio {
-    margin-right: 8px;
-    border-radius: 20px 5px 20px 5px;
-    padding-left: 0px;
-    padding-right: 0px;
-    border: solid 3px;
-    border-color: #484a4a;
-    transition: background 0.3s ease,
-	border-radius 0.3s ease;
-    color: #ffffff;
-    background: #0f141c;
+#tray,
+#custom-sysmon,
+#battery,
+#network,
+#pulseaudio,
+#backlight,
+#custom-updates,
+#custom-files,
+#custom-browser,
+#custom-launcher,
+#custom-spotify,
+#clock,
+#custom-recorder {
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    text-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#pulseaudio:hover {
-	border-radius: 5px 20px 5px 20px;
-	background: #484a4a;
-}
-
-#backlight {
-    margin-right: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px 5px 20px 5px;
-    border: solid 3px;
-    border-color: #484a4a;
-    transition: background 0.3s ease,
-	border-radius 0.3s ease;
-    color: #ffffff;
-    background: #0f141c;
-}
-
-#backlight:hover {
-	border-radius: 5px 20px 5px 20px;
-	background: #484a4a;
-}
-
-
-#battery {
-    margin-right: 8px;
-    padding-left: 1px;
-    padding-right: 1px;
-    border-radius: 20px 5px 20px 5px;
-    border: solid 3px;
-    border-color: #484a4a;
-    transition: background 0.3s ease,
-	border-radius 0.3s ease;
-    color: #ffffff;
-    background: #0f141c;
-}
-
-#battery:hover {
-	border-radius: 5px 20px 5px 20px;
-	background: #484a4a;
-}
-
-
-#battery.charging {
-    color: #ffffff;
-	padding-right: 9px;
-	padding-left: 9px;
-    /*background-color: #26A65B;*/
-    background-color: #0f141c;
-    border: solid 3px;
-    border-color: #484a4a;
+#tray:hover,
+#custom-sysmon:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#custom-updates:hover,
+#custom-files:hover,
+#custom-browser:hover,
+#custom-launcher:hover,
+#custom-spotify:hover,
+#clock:hover,
+#custom-recorder:hover {
+  color: white;
+  text-shadow: 0 0 8px #b4befe;
 }
 
 #battery.warning:not(.charging) {
-    background-color: #0f141c;
-    color: #ff0000;
-    border-color: #ff0000;
+  background: #232323;
+  color: #ffb86c;
+  border-color: #ffb86c;
 }
 
 #battery.critical:not(.charging) {
-    background-color: #0f141c;
-    color: #ffffff;
-    border-color: #ad2626;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  background: #232323;
+  color: #ff5555;
+  border-color: #ff5555;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+#custom-sysmon,
+#custom-spotify,
+#clock,
+#network {
+  font-size: 11px;
 }
 
-#tooltip {
-    background-color: #181818;
+#pulseaudio-slider {
+  min-width: 50px; /* Matches "min-length": 13 effect */
+  color: #ffffff; /* Adjust to match your theme */
+  border-radius: 6px;
 }
 
-#tray {
-    padding-left: 16px;
-    padding-right: 16px;
-	margin-right: 8px;
-    border-radius: 20px 10px 10px 5px;
-    border: solid 3px;
-    border-color: #484a4a;
-    transition: background 0.3s ease,
-	border-radius 0.3s ease;
-    color: #ffffff;
-    background: #0f141c;
+#pulseaudio-slider trough {
+  border-radius: 6px;
 }
 
-#tray:hover {
-	border-radius: 5px 20px 5px 20px;
-	background: #484a4a;
+#pulseaudio-slider highlight {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
 }
 
-#custom-recorder {
-	padding-left: 10px;
-	padding-right: 10px;
-	border-radius: 20px 20px 20px 20px;
-	border: solid 3px;
-	border-color: #484a4a;
-    color: #ffffff;
-    background: #0f141c;
+#pulseaudio-slider slider {
+  background: #ffffff; /* Slider knob color */
+  border-radius: 6px;
+  min-width: 11px;
+  min-height: 11px;
+  margin: 1px;
+}
+
+#pulseaudio {
+  font-size: 11px;
+  padding-top: 2px; /* Nudge down */
+  margin-top: 2px;
 }
 
 #custom-recorder.recording {
-	animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 @keyframes blink {
-    to {
-        background-color: #eb4034;
-        color: #484a4a;
-    }
+  to {
+    background-color: #ff5555;
+    color: #232323;
+  }
+}
+
+#tooltip {
+  background: #232323;
+  color: #e0e0e0;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+}
+
+#waybar .popup,
+#tray menu {
+  background: rgba(35, 35, 35, 0.55);
+  color: #e0e0e0;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 8px 12px;
+  font-family: "Iosevka Nerd Font", "FiraCode Nerd Font",
+    "JetBrainsMono Nerd Font", monospace;
+  font-size: 14px;
 }

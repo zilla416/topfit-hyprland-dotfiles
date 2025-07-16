@@ -1,95 +1,130 @@
 {
-    "margin": "5 20 0 20",
-        "modules-left": ["custom/updates", "custom/spotify", "custom/cava"],
-        "modules-center": ["hyprland/workspaces"],
-        "modules-right": ["clock","network","pulseaudio", "backlight", "battery", "custom/ytube", "tray"],
+  "margin": "5 20 0 20",
+  "modules-left": [
+    "custom/launcher",
+    "custom/files",
+    "custom/browser",
+    "network",
+    "custom/sysmon",
+    "custom/cava"
+  ],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": [
+    "custom/spotify",
+    "clock",
+    "backlight",
+    "battery",
+    "custom/ytube",
+    "pulseaudio/slider",
+    "pulseaudio",
+    "tray"
+  ],
 
+  //***************************
+  //*  Modules configuration  *
+  //***************************
 
-        //***************************
-        //*  Modules configuration  *
-        //***************************
+  "custom/sysmon": {
+    "format": "{}",
+    "interval": 5,
+    "on-click": "gnome-system-monitor",
+    "exec": "~/.config/waybar/scripts/sysmon.sh"
+  },
 
+  // "custom/updates": {
+  //   "format": "   ", // Arch Linux icon (Font Awesome)
+  //   "interval": 7200,
+  //   "on-click": "nautilus",
+  //   "signal": 8
+  // },
 
-        "custom/updates": {
-            "format": "   ", // Arch Linux icon (Font Awesome)
-            "interval": 7200,     
-            "on-click": "nautilus", 
-            "signal": 8
-        },
+  "custom/files": {
+    "format": " ", // Folder icon (Font Awesome)
+    "on-click": "nautilus"
+  },
 
-		"custom/spotify": {
-		  "format": "  {}",
-		  "interval": 5,
-		  "on-click": "flatpak run com.spotify.Client",
-		  "exec": "~/.config/waybar/scripts/spotify.sh"
-		},
+  "custom/launcher": {
+    "format": " ", // Arch Linux icon (Font Awesome)
+    "on-click": "rofi -show drun"
+  },
 
-        "clock": {
-            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-            "format": "{:%a | %d %b | %I:%M %p}"
-        },
+  "custom/browser": {
+    "format": " ", // Font Awesome globe icon (\uf0ac)
+    "on-click": "~/.config/waybar/scripts/open-browser.sh"
+  },
 
-		"custom/cava": {
-				"format": "{}",
-				"exec": "~/.config/waybar/scripts/cava.sh"
-			},
+  "custom/spotify": {
+    "format": "  {}",
+    "interval": 5,
+    "on-click": "~/.config/waybar/scripts/open-spotify.sh",
+    "exec": "~/.config/waybar/scripts/spotify.sh"
+  },
 
-			  "network": {
-		  "format-wifi": "󰤨  {essid} ({signalStrength}%)",
-		  "format-ethernet": "󰈁 Ethernet",
-		  "format-disconnected": "󰤭 Disconnected",
-		  "on-click": "nm-connection-editor"
-		},
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%a | %d %b | %I:%M %p}"
+  },
 
-        "pulseaudio": {
-            "reverse-scrolling": 1,
-            "format": "{volume}% {icon}",
-            "format-bluetooth": "{volume}% {icon}",
-            "format-muted": " {format_source}",
-            "format-source-muted": "Mute 🚫",
-            "format-icons": {
-                "headphone": "",
-                "default": ["🕨", "🕩", "🕪"]
-            },
-            "on-click": "pavucontrol",
-            "min-length": 13,
-        },
+  "custom/cava": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/cava.sh"
+  },
 
-        "backlight": {
-            "device": "intel_backlight",
-            "format": "{percent}% {icon}",
-            "format-icons": ["🌑","🌒","🌓","🌔", "🌕"],
-            "min-length": 5,
-        },
+  "network": {
+    "format-wifi": "󰤨  {essid} ({signalStrength}%)",
+    "format-ethernet": "󰈁 Ethernet",
+    "format-disconnected": "󰤭 Disconnected",
+    "on-click": "nm-connection-editor"
+  },
 
-        "battery": {
-            "states": {
-                "warning": 30,
-                "critical": 15
-            },
-            "format": " {capacity}% {icon} ",
-            "format-charging": "{capacity}% ",
-            "format-plugged": "{capacity}% ",
-            "format-alt": "{time} {icon}",
-            "format-icons": ["▁", "▂", "▃", "▄", "▅"],
-            
-        },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
 
-        "tray": {
-            "icon-size": 16,
-            "spacing": 4
-        },
+  "pulseaudio": {
+    "reverse-scrolling": 1,
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": " {format_source}",
+    "format-source-muted": "Mute 🚫",
+    "format-icons": {
+      "headphone": "",
+      "default": ["🕨", "🕩", "🕪"]
+    },
+    "on-click": "pavucontrol",
+    "min-length": 5
+  },
 
-		
-	  "custom/recorder": {
-		"exec": "~/.config/waybar/scripts/record-status.sh",
-		"interval": 1,
-		"on-click": "~/.config/waybar/scripts/toggle-record.sh",
-		"return-type": "json"
-	  }
-	},
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["🌑", "🌒", "🌓", "🌔", "🌕"],
+    "min-length": 5
+  },
 
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": " {capacity}% {icon} ",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅"]
+  },
 
+  "tray": {
+    "icon-size": 16,
+    "spacing": 4
+  },
 
-
+  "custom/recorder": {
+    "exec": "~/.config/waybar/scripts/record-status.sh",
+    "interval": 1,
+    "on-click": "~/.config/waybar/scripts/toggle-record.sh",
+    "return-type": "json"
+  }
 }
