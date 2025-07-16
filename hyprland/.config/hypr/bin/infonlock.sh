@@ -19,10 +19,14 @@ icon_index=$((battery_percentage / 10))
 battery_icon=${battery_icons[icon_index]}
 
 # Check if the battery is charging
-if [ "$battery_status" = "Charging" ]; then
+# if [ "$battery_status" = "Charging" ]; then
+# 	battery_icon="$charging_icon"
+# fi
+
+if true then
 	battery_icon="$charging_icon"
 fi
 
 # Output the battery percentage and icon
-echo "$battery_percentage% $battery_icon"
+# echo "$battery_percentage% $battery_icon"
 

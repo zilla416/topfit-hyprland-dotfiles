@@ -38,7 +38,7 @@
 		  "format-wifi": "󰤨  {essid} ({signalStrength}%)",
 		  "format-ethernet": "󰈁 Ethernet",
 		  "format-disconnected": "󰤭 Disconnected",
-		  "on-click": "/home/lostfromlight/.config/waybar/scripts/nmtui.sh"
+		  "on-click": "nm-connection-editor"
 		},
 
         "pulseaudio": {
