@@ -44,6 +44,7 @@ window#waybar {
 #custom-browser,
 #custom-launcher,
 #custom-spotify,
+#custom-dsbattery,
 #clock,
 #custom-recorder {
   padding: 0 12px;
@@ -66,6 +67,7 @@ window#waybar {
 #custom-browser,
 #custom-launcher,
 #custom-spotify,
+#custom-dsbattery,
 #clock,
 #custom-recorder {
   transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -139,6 +141,10 @@ window#waybar {
   font-size: 11px;
   padding-top: 2px; /* Nudge down */
   margin-top: 2px;
+}
+
+#custom-dsbattery {
+  font-size: 11px;
 }
 
 #custom-recorder.recording {

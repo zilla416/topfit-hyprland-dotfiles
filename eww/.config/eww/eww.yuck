@@ -1,0 +1,50 @@
+;; Poll for wallpapers, formatted as a real Yuck list
+(defpoll wallpaper_list :interval "5s"
+  "find /home/jaiden/Pictures/wallpapers -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname -o -iname '*.webm' -o -iname '*.mp4' \\) -print0 | jq -R -s -c 'split(\"\\u0000\")[:-1]'"
+)
+
+(defvar fades "simple center wipe outer slide")
+(defvar selected_fade "simple")
+
+(defwindow wallpaper_widget
+  :monitor 0
+  :geometry (geometry :x "36%" :y "30%" :width 10 :height 10)
+  :stacking "overlay"
+  :focusable true
+  :exclusive false
+  :namespace "wallpaper_widget"
+  (eventbox :onhover "" :onhoverlost "eww close wallpaper_widget"
+            :onkeydown "if [ \"$1\" = \"Escape\" ]; then eww close wallpaper_widget; fi"
+    (box :orientation "vertical" :spacing 10
+      (wallpaper_buttons :wallpaper_list wallpaper_list :selected_fade selected_fade)
+    )
+  )
+)
+
+(defwidget wallpaper_buttons [wallpaper_list selected_fade]
+  (box :orientation "vertical" :spacing 8
+    ; First row - wallpapers 0, 1, 2
+    (box :orientation "horizontal" :spacing 8 :halign "center"
+      (for i in "[0, 1, 2]"
+        (box :width 180 :height 110 :class "wallpaper-tile"
+          (button
+            :class "wallpaper-button"
+            :onclick "bash ~/.config/eww/scripts/change_wallpaper.sh '${wallpaper_list[i]}' '${selected_fade}'"
+            (image :path "${wallpaper_list[i]}" 
+                   :image-width 160 
+                   :image-height 90
+                   :preserve-aspect-ratio true)))))
+    ; Second row - wallpapers 3, 4, 5
+    (box :orientation "horizontal" :spacing 8 :halign "center"
+      (for i in "[3, 4, 5]"
+        (box :width 180 :height 110 :class "wallpaper-tile"
+          (button
+            :class "wallpaper-button"
+            :onclick "bash ~/.config/eww/scripts/change_wallpaper.sh '${wallpaper_list[i]}' '${selected_fade}'"
+            (image :path "${wallpaper_list[i]}" 
+                   :image-width 160 
+                   :image-height 90
+                   :preserve-aspect-ratio true)))))
+  )
+)
+

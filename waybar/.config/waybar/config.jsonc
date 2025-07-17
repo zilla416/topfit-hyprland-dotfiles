@@ -17,7 +17,10 @@
     "custom/ytube",
     "pulseaudio/slider",
     "pulseaudio",
-    "tray"
+    "tray",
+    "custom/recorder",
+    "custom/eww_wallpapers",
+    "custom/dsbattery"
   ],
 
   //***************************
@@ -29,6 +32,19 @@
     "interval": 5,
     "on-click": "gnome-system-monitor",
     "exec": "~/.config/waybar/scripts/sysmon.sh"
+  },
+
+  "custom/dsbattery": {
+    "format": "{}",
+    "interval": 3,
+    "escape": true,
+    "exec": "dsbattery",
+    "on-click-right": "dsbattery -d"
+  },
+
+  "custom/eww_wallpapers": {
+    "format": "󰋹 Wallpapers",
+    "on-click": "eww open wallpaper_widget"
   },
 
   // "custom/updates": {
