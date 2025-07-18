@@ -1,66 +1,137 @@
-$accent: #8aadf4;
-$accent-soft: #dbeafe;
-$background: rgba(36, 41, 58, 0.93); // original #24293aee (now 93% opacity)
-$background-solid: #24293a;
-$border: #22222a;
-$text: #e0e0e6;
-$button-hover: rgba(65, 72, 103, 0.8); // original #414867cc (cc = 80% opacity)
-$button-active: rgba(
-  138,
-  173,
-  244,
-  0.53
-); // original #8aadf488 (88 = 53% opacity)
+$accent: #007aff; // iOS blue
+$accent-soft: rgba(0, 122, 255, 0.12);
+$background: rgba(255, 255, 255, 0.08); // Very subtle white glass
+$background-solid: rgba(28, 28, 30, 0.92); // Dark glass base
+$border: rgba(255, 255, 255, 0.18); // Subtle glass border
+$text: #f2f2f7; // iOS light text
+$button-hover: rgba(0, 122, 255, 0.15);
+$button-active: rgba(0, 122, 255, 0.25);
+$glass-shadow: rgba(0, 0, 0, 0.3);
+$glass-highlight: rgba(255, 255, 255, 0.25);
 
-window#wallpaper_widget {
+.wallpaper_widget {
   background-color: $background;
-  border-radius: 18px;
-  border: 2px solid $border;
-  box-shadow: 0 9px 20px 0 #31324466;
-  padding: 24px 28px;
+  border-radius: 0;
+  border: 1px solid $border;
+  padding: 32px;
   color: $text;
 }
 
 button {
-  background-color: $background-solid;
-  border-radius: 13px;
-  padding: 7px;
-  margin: 3px;
-  border: 2px solid transparent;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 8px;
+  margin: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-  border: 2px solid $accent;
-  background-color: $button-hover;
+  background-color: rgba(0, 122, 255, 0.2);
+  border: 1px solid rgba(0, 122, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.15);
 }
 
 .fade-selected {
   background-color: $accent-soft;
-  border: 2.5px solid $accent;
+  border: 1px solid $accent;
   color: $accent;
 }
 
 .wallpaper-tile {
-  background-color: $background-solid;
-  border-radius: 8px;
-  border: 1px solid $border;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.wallpaper-tile:hover {
+  background-color: rgba(0, 122, 255, 0.15);
+  border: 1px solid rgba(0, 122, 255, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.2);
 }
 
 .wallpaper-button {
-  background-color: transparent;
-  border-radius: 6px;
+  background: transparent;
+  border-radius: 12px;
   padding: 4px;
   margin: 0;
   border: none;
 }
 
 .wallpaper-button:hover {
-  border: 2px solid $accent;
-  background-color: $button-hover;
+  background-color: rgba(0, 122, 255, 0.12);
+  border: 1px solid rgba(0, 122, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.1);
 }
 
 .empty-tile {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 0;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+/* Add image container styles for better thumbnail display */
+.image-container {
+  border-radius: 0;
+}
+
+/* Scrollbar styling - Ultra Optimized for Smooth Feel */
+scrolledwindow scrollbar {
+  background: transparent;
   border-radius: 6px;
-  border: 1px dashed $border;
+}
+
+scrolledwindow scrollbar slider {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  min-width: 6px;
+  min-height: 6px;
+}
+
+scrolledwindow scrollbar slider:hover {
+  background-color: rgba(0, 122, 255, 0.4);
+}
+
+/* Optimize scroll content for smoother performance */
+scrolledwindow {
+  /* Force hardware acceleration if available */
+  background-color: transparent;
+}
+
+/* Close button styling - Optimized */
+.close-button {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 4px;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: $text;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 20px;
+  min-height: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close-button:hover {
+  background-color: rgba(255, 69, 58, 0.85);
+  border: 1px solid rgba(255, 69, 58, 1);
+  color: white;
+  box-shadow: 0 3px 10px rgba(255, 69, 58, 0.3);
+}
+
+/* Transparent overlay for click-outside detection */
+.overlay-background {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Main widget content area - Optimized Glass Effect */
+.wallpaper-widget-content {
+  background-color: rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  border: 1px solid $glass-highlight;
+  padding: 24px;
+  color: $text;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
 }

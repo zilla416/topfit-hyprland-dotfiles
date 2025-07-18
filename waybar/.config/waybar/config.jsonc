@@ -12,6 +12,7 @@
   "modules-right": [
     "custom/spotify",
     "clock",
+    "custom/eww_wallpapers",
     "backlight",
     "battery",
     "custom/ytube",
@@ -19,7 +20,6 @@
     "pulseaudio",
     "tray",
     "custom/recorder",
-    "custom/eww_wallpapers",
     "custom/dsbattery"
   ],
 
@@ -43,7 +43,7 @@
   },
 
   "custom/eww_wallpapers": {
-    "format": "󰋹 Wallpapers",
+    "format": "󰋹 Style",
     "on-click": "eww open wallpaper_widget"
   },
 

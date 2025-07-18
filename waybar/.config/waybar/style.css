@@ -45,6 +45,7 @@ window#waybar {
 #custom-launcher,
 #custom-spotify,
 #custom-dsbattery,
+#custom-eww_wallpapers,
 #clock,
 #custom-recorder {
   padding: 0 12px;
@@ -68,6 +69,7 @@ window#waybar {
 #custom-launcher,
 #custom-spotify,
 #custom-dsbattery,
+#custom-eww_wallpapers,
 #clock,
 #custom-recorder {
   transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -86,6 +88,7 @@ window#waybar {
 #custom-launcher:hover,
 #custom-spotify:hover,
 #clock:hover,
+#custom-eww_wallpapers:hover,
 #custom-recorder:hover {
   color: white;
   text-shadow: 0 0 8px #b4befe;
@@ -144,6 +147,10 @@ window#waybar {
 }
 
 #custom-dsbattery {
+  font-size: 11px;
+}
+
+#custom-eww_wallpapers {
   font-size: 11px;
 }
 
