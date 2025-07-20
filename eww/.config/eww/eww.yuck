@@ -15,10 +15,10 @@
   :monitor 0
   :geometry (geometry :x "0%" :y "0%" :width "100%" :height "100%")
   :stacking "overlay"
-  :focusable true
+  :focusable false
   :exclusive false
   :namespace "wallpaper_widget"
-  :wm-ignore false
+  :wm-ignore true
   (eventbox :onclick "eww close wallpaper_widget"
             :class "overlay-background"
     (box :orientation "vertical" :halign "center" :valign "center"
