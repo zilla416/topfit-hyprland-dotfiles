@@ -18,9 +18,8 @@
     "custom/ytube",
     "pulseaudio/slider",
     "pulseaudio",
-    "tray",
-    "custom/recorder",
-    "custom/dsbattery"
+    "custom/dsbattery",
+    "tray"
   ],
 
   //***************************
@@ -95,7 +94,7 @@
 
   "pulseaudio/slider": {
     "min": 0,
-    "max": 100,
+    "max": 150,
     "orientation": "horizontal"
   },
 
