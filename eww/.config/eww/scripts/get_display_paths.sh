@@ -3,6 +3,27 @@
 # Create thumbnails directory if it doesn't exist
 mkdir -p /tmp/eww-thumbnails
 
+# Cache file to track last scan
+CACHE_FILE="/tmp/eww-thumbnails/.cache_display"
+WALLPAPER_DIR="/home/jaiden/Pictures/wallpapers"
+
+# Check if we need to rescan (only if wallpaper dir changed or cache is old)
+NEEDS_SCAN=false
+if [ ! -f "$CACHE_FILE" ]; then
+    NEEDS_SCAN=true
+else
+    # Check if wallpaper directory has been modified since last scan
+    if [ "$WALLPAPER_DIR" -nt "$CACHE_FILE" ]; then
+        NEEDS_SCAN=true
+    fi
+fi
+
+# If cache exists and is recent, use it
+if [ "$NEEDS_SCAN" = false ] && [ -f "$CACHE_FILE.json" ]; then
+    cat "$CACHE_FILE.json"
+    exit 0
+fi
+
 # Create two arrays: one for display paths, one for original paths
 display_paths=()
 original_paths=()
@@ -30,7 +51,10 @@ while IFS= read -r -d '' file; do
         display_paths+=("$file")
         original_paths+=("$file")
     fi
-done < <(find /home/jaiden/Pictures/wallpapers -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.gif' -o -iname '*.webp' \) -print0)
+done < <(find "$WALLPAPER_DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.gif' -o -iname '*.webp' \) -print0 | sort -z)
 
-# Output display paths as JSON array (thumbnails for GIFs, originals for others)
-printf '%s\n' "${display_paths[@]}" | jq -R -s -c 'split("\n")[:-1]'
+# Output display paths as JSON array (thumbnails for GIFs, originals for others) and cache it
+output=$(printf '%s\n' "${display_paths[@]}" | jq -R -s -c 'split("\n")[:-1]')
+echo "$output" > "$CACHE_FILE.json"
+touch "$CACHE_FILE"
+echo "$output"

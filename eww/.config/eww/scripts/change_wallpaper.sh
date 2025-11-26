@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
 WALLPATH="$1"
-FADE="$2"
+FADE="${2:-fade}"
 
-# Change wallpaper
-swww img "$WALLPATH" --transition-type "$FADE"
+# Close the wallpaper widget
+eww close wallpaper_widget
+
+# Change wallpaper with smooth fade transition
+# Uses fade transition with longer duration and bezier easing for smooth effect
+swww img "$WALLPATH" \
+    --transition-type fade \
+    --transition-duration 8 \
+    --transition-fps 60 \
+    --transition-bezier 0.4,0.0,0.2,1.0
 
 # Generate pywal color scheme
 wal -i "$WALLPATH"

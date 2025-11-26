@@ -1,15 +1,20 @@
 ;; Poll for wallpapers (original paths for onclick)
-(defpoll wallpaper_list :interval "5s"
+(defpoll wallpaper_list :interval "10s"
   "bash ~/.config/eww/scripts/get_wallpapers_with_thumbnails.sh"
 )
 
 ;; Poll for display paths (thumbnails for GIFs, originals for others)
-(defpoll display_list :interval "5s"
+(defpoll display_list :interval "10s"
   "bash ~/.config/eww/scripts/get_display_paths.sh"
 )
 
+;; Get wallpaper count efficiently
+(defpoll wallpaper_count :interval "10s" :initial "0"
+  "bash ~/.config/eww/scripts/get_wallpaper_count.sh"
+)
+
 (defvar fades "simple center wipe outer slide")
-(defvar selected_fade "wipe")
+(defvar selected_fade "fade")
 
 (defwindow wallpaper_widget
   :monitor 0
@@ -26,17 +31,17 @@
         (box :class "wallpaper-widget-content"
              :orientation "vertical" 
              :spacing 10
-          (wallpaper_buttons :wallpaper_list wallpaper_list :display_list display_list :selected_fade selected_fade)
+          (wallpaper_buttons :wallpaper_list wallpaper_list :display_list display_list :selected_fade selected_fade :count wallpaper_count)
         )
       )
     )
   )
 )
 
-(defwidget wallpaper_buttons [wallpaper_list display_list selected_fade]
+(defwidget wallpaper_buttons [wallpaper_list display_list selected_fade count]
   (scroll :vscroll true :hscroll false :height 330
     (box :orientation "vertical" :spacing 8
-      ; First row - close button and wallpapers 0, 1
+      ; First row - close button and first 2 wallpapers
       (box :orientation "horizontal" :spacing 8 :halign "center"
         (button :class "close-button"
                 :onclick "eww close wallpaper_widget"
@@ -44,63 +49,27 @@
           "✕")
         (for i in "[0, 1]"
           (box :width 180 :height 110 :class "wallpaper-tile"
+               :visible {i < count}
             (button
               :class "wallpaper-button"
               :onclick "bash ~/.config/eww/scripts/change_wallpaper.sh '${wallpaper_list[i]}' '${selected_fade}'"
               (image :path "${display_list[i]}" 
                      :image-width 160 
                      :image-height 90)))))
-      ; Second row - wallpapers 2, 3, 4
-      (box :orientation "horizontal" :spacing 8 :halign "center"
-        (for i in "[2, 3, 4]"
-          (box :width 180 :height 110 :class "wallpaper-tile"
-            (button
-              :class "wallpaper-button"
-              :onclick "bash ~/.config/eww/scripts/change_wallpaper.sh '${wallpaper_list[i]}' '${selected_fade}'"
-              (image :path "${display_list[i]}" 
-                     :image-width 160 
-                     :image-height 90)))))
-      ; Third row - wallpapers 5, 6, 7
-      (box :orientation "horizontal" :spacing 8 :halign "center"
-        (for i in "[5, 6, 7]"
-          (box :width 180 :height 110 :class "wallpaper-tile"
-            (button
-              :class "wallpaper-button"
-              :onclick "bash ~/.config/eww/scripts/change_wallpaper.sh '${wallpaper_list[i]}' '${selected_fade}'"
-              (image :path "${display_list[i]}" 
-                     :image-width 160 
-                     :image-height 90)))))
-      ; Fourth row - wallpapers 8, 9, 10
-      (box :orientation "horizontal" :spacing 8 :halign "center"
-        (for i in "[8, 9, 10]"
-          (box :width 180 :height 110 :class "wallpaper-tile"
-            (button
-              :class "wallpaper-button"
-              :onclick "bash ~/.config/eww/scripts/change_wallpaper.sh '${wallpaper_list[i]}' '${selected_fade}'"
-              (image :path "${display_list[i]}" 
-                     :image-width 160 
-                     :image-height 90)))))
-      ; Fifth row - wallpapers 11, 12, 13
-      (box :orientation "horizontal" :spacing 8 :halign "center"
-        (for i in "[11, 12, 13]"
-          (box :width 180 :height 110 :class "wallpaper-tile"
-            (button
-              :class "wallpaper-button"
-              :onclick "bash ~/.config/eww/scripts/change_wallpaper.sh '${wallpaper_list[i]}' '${selected_fade}'"
-              (image :path "${display_list[i]}" 
-                     :image-width 160 
-                     :image-height 90)))))
-      ; Sixth row - wallpapers 14, 15, 16
-      (box :orientation "horizontal" :spacing 8 :halign "center"
-        (for i in "[14, 15, 16]"
-          (box :width 180 :height 110 :class "wallpaper-tile"
-            (button
-              :class "wallpaper-button"
-              :onclick "bash ~/.config/eww/scripts/change_wallpaper.sh '${wallpaper_list[i]}' '${selected_fade}'"
-              (image :path "${display_list[i]}" 
-                     :image-width 160 
-                     :image-height 90)))))
+      
+      ; Dynamic rows - 3 wallpapers per row
+      (for row_start in {count > 2 ? "[2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50, 53, 56, 59, 62, 65, 68, 71, 74, 77, 80, 83, 86, 89, 92, 95, 98]" : "[]"}
+        (box :orientation "horizontal" :spacing 8 :halign "center"
+             :visible {row_start < count}
+          (for offset in "[0, 1, 2]"
+            (box :width 180 :height 110 :class "wallpaper-tile"
+                 :visible {row_start + offset < count}
+              (button
+                :class "wallpaper-button"
+                :onclick "bash ~/.config/eww/scripts/change_wallpaper.sh '${wallpaper_list[row_start + offset]}' '${selected_fade}'"
+                (image :path "${display_list[row_start + offset]}" 
+                       :image-width 160 
+                       :image-height 90))))))
     )
   )
 )
-
